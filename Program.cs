@@ -4,21 +4,20 @@
     {
         static void Main(string[] args)
         {
-            Random rnd = new Random();
-            int randomNumber = rnd.Next(21);
-            int guess = -1;
-            Console.WriteLine(randomNumber);
+            Random rnd = new();
+            int randomNumber = rnd.Next(1, 2);
+            int guess;
             int maxGuesses = 5;
-            string finalMessage = $"Tyvärr du lyckades inte gissa rätt tal på {maxGuesses} försök";
+            string finalMessage = $"Tyvärr du lyckades inte gissa rätt tal på {maxGuesses} försök.";
             for (int i = 0; i < maxGuesses; i++) 
             {
                 Console.Write("Skriv in din gissning: ");
-                string input = Console.ReadLine();
+                string input = Console.ReadLine()?? string.Empty;
                 while (!int.TryParse(input, out guess))
                 {
                     Console.WriteLine("Skriv in ett heltal!");
                 }
-                if(guess == randomNumber)
+                if(CheckGuess(guess, randomNumber))
                 {
                 finalMessage = "Wooho! Du klarade det!";
                 break;
@@ -27,6 +26,11 @@
                 Console.WriteLine(feedback);
             };
             Console.WriteLine(finalMessage);
+        }
+        static bool CheckGuess(int guess, int num)
+        {
+            if (guess == num){ return true; }
+            return false;
         }
     }
 }
