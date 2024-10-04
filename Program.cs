@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Random rnd = new();
-            int randomNumber = rnd.Next(1, 2);
+            int randomNumber = rnd.Next(21);
             int guess;
             int maxGuesses = 5;
             string finalMessage = $"Tyvärr du lyckades inte gissa rätt tal på {maxGuesses} försök.";
